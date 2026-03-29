@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AERO SPEED | Web3 Mining</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+    <script src="https://unpkg.com/web3modal@1.9.12/dist/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+</head>
+<body>
+    <div id="login-overlay">
+        <div class="login-box">
+            <h1 class="logo-text">AERO SPEED</h1>
+            <p style="color: #888; margin-bottom: 20px;">Connect your wallet to start mining AER</p>
+            <button onclick="connectWallet()" class="main-btn">CONNECT WALLET</button>
+            <p style="font-size: 0.7rem; color: #555; margin-top: 15px;">Supports MetaMask, Trust Wallet & more</p>
+        </div>
+    </div>
+
+    <div id="mobile-container">
+        <header class="header">
+            <div class="pill" onclick="openModal('profile-modal')">👤 <span id="display-name">Pilot</span></div>
+            <div class="pill gold-border">⚡ <span id="power-display">10,000</span> AER/d</div>
+        </header>
+
+        <main class="stats-center">
+            <p class="label">Total AER Earned</p>
+            <h1 id="balance-display">0</h1>
+            <div class="rocket-container">
+                <img src="https://cdn-icons-png.flaticon.com/512/1356/1356479.png" id="main-rocket">
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <div class="nav-item" onclick="openModal('upgrade-modal')">🚀<span>Boost</span></div>
+            <div class="nav-item" onclick="openLeaderboardModal()">🏆<span>Top 100</span></div>
+            <div class="nav-item main-action"><div class="play-btn">GO</div></div>
+            <div class="nav-item" onclick="copyRef()">👥<span>Ref</span></div>
+            <div class="nav-item" onclick="openModal('profile-modal')">⚙️<span>Profile</span></div>
+        </nav>
+    </div>
+
+    <div id="upgrade-modal" class="modal"><div class="modal-content">
+        <span class="close" onclick="closeModal('upgrade-modal')">&times;</span>
+        <h2>Boost Speed</h2>
+        <div class="shop-grid">
+            <div class="shop-item" style="display:flex; justify-content:space-between; padding:15px; background:#000; margin:10px 0; border-radius:10px;">
+                <span>+10k AER/d</span>
+                <button onclick="buyBoost(5000, 10000)" class="buy-btn" style="background:var(--gold); border:none; padding:5px 15px; border-radius:5px; font-weight:bold;">5,000 AER</button>
+            </div>
+        </div>
+    </div></div>
+
+    <div id="leader-modal" class="modal"><div class="modal-content">
+        <span class="close" onclick="closeModal('leader-modal')">&times;</span>
+        <h2>Global Leaderboard</h2>
+        <div id="leader-list" class="scrollable" style="margin-top:20px;"></div>
+    </div></div>
+
+    <div id="profile-modal" class="modal"><div class="modal-content">
+        <span class="close" onclick="closeModal('profile-modal')">&times;</span>
+        <h2>Wallet Profile</h2>
+        <p id="wallet-address" style="font-size:0.7rem; color:var(--gold); margin:15px 0;"></p>
+        <input type="text" id="username-input" placeholder="Enter New Name" maxlength="15">
+        <button onclick="saveUsername()" class="main-btn">UPDATE NAME</button>
+    </div></div>
+
+    <script src="game.js"></script>
+</body>
+</html>
